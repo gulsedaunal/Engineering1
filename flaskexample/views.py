@@ -116,8 +116,14 @@ def go():
     query = request.args.get('query', '') #key-value pairs 
 
     result_class = model.predict(pd.Series(query))
+    recommend = list()
+    water_recommendations = 'Water Supply'
+    if result_class == 'Water':
+    	recommend.append(water_recommendations)
+    	
     return render_template(
         'go.html',
         query = query,
-        cat = result_class
+        cat = result_class,
+        recommend = recommend
     )
